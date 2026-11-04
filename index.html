@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tax Invoice</title>
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+<script src="lib/html2canvas.min.js"></script>
+<script src="lib/jspdf.umd.min.js"></script>
+</head>
+<body>
+<header class="bar">
+  <h1>Tax Invoice</h1>
+  <div class="acts">
+    <button class="btn" data-a="new">New invoice</button>
+    <button class="btn" data-a="print">Print</button>
+    <button class="btn pri" data-a="pdf">Download PDF</button>
+  </div>
+</header>
+<div class="tabs seg"><button class="on" data-a="tab" data-v="edit">Edit</button><button data-a="tab" data-v="prev">Preview</button></div>
+<div class="wrap t-edit" id="wrap">
+  <div class="ecol" id="form"></div>
+  <div class="pcol"><div class="pv" id="pv"></div></div>
+</div>
+<div id="print"></div>
+<script src="app.js"></script>
+</body>
+</html>

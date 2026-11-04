@@ -1,4 +1,4 @@
-# Tax Invoice
+# Tax Invoice — Backbone First LLP
 
 A one-page GST invoice maker. No server, no database, no sign-up — it runs entirely in the browser.
 

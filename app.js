@@ -52,7 +52,7 @@ function calc(inv){
 
 /* ---------- invoice paper ---------- */
 function paperHTML(inv,p){
- const c=calc(inv),E=esc,ph=t=>`<span class="i-ph">${t}</span>`;
+ const c=calc(inv),E=esc,ph=t=>`<span class="i-ph">${t}</span>`,logo=p.logo||window.LOGO||"";
  const ln=(ic,t,cls="")=>t?`<div class="h-ln ${cls}">${ic?IC[ic]:""}<span class="t">${t}</span></div>`:"";
  const addr=[p.address,[p.city,st(p.state)[1]&&`${st(p.state)[1]} (${st(p.state)[2]} - ${p.state})`].filter(Boolean).join(", ")+(p.pincode?`, PIN ${p.pincode}`:"")].filter(Boolean).join(",\n");
  const party=(x,extra)=>`<div class="h-name">${x.name?E(x.name):ph("Customer name")}</div>${ln("home",E(x.address))}${ln("ph",x.phone&&"+91 "+E(x.phone))}${extra}`;
@@ -65,8 +65,8 @@ function paperHTML(inv,p){
   ||`<tr><td colspan="${6+cols.length}" class="c" style="padding:18px">${ph("Add products")}</td></tr>`;
  const shipRow=c.fr?`<tr class="sh"><td></td><td colspan="2" style="text-align:right">Shipping &amp; Packaging</td><td class="c">@${c.fg}%</td><td>${f2(c.fr)}</td>${taxCells(c.ftax,c.fg,0)}<td>${f2(c.fr+c.ftax)}</td></tr>`:"";
  return `<div class="paper" style="--b:${p.color||"#1d6fb8"}">
- <div class="h-top"><div class="h-logo">${p.logo?`<img src="${p.logo}">`:""}</div>
-  <div class="h-r"><div class="h-copy">Original</div><div class="h-t">TAX INVOICE ${E(inv.no)}</div><div class="h-d"><b>Date</b> ${dmy(inv.date)}</div>${meta?`<div class="h-d" style="font-size:11.5px">${meta}</div>`:""}</div></div>
+ <div class="h-top"><div class="h-r"><div class="h-copy">Original</div><div class="h-t">TAX INVOICE ${E(inv.no)}</div><div class="h-d"><b>Date</b> ${dmy(inv.date)}</div>${meta?`<div class="h-d" style="font-size:11.5px">${meta}</div>`:""}</div>
+  <div class="h-brand">${logo?`<img src="${logo}">`:""}${p.name?`<div class="h-bn">${E(p.name)}</div>`:""}</div></div>
  <div class="h-rule"></div>
  <div class="h-cols">
   <div><div class="h-cn">${E(p.name||"Your Business")}</div>${ln("home",addr?E(addr):ph("Address"))}${ln("ph",p.phone&&"+91 "+E(p.phone))}${ln("at",E(p.email))}${ln("web",E(p.website))}
